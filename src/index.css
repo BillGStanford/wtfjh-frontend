@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --wtf-primary: #ff6b35; /* Neon orange */
+  --wtf-secondary: #004e89; /* Deep teal */
+  --wtf-accent: #ffd23f; /* Bright yellow */
+  --wtf-dark: #0a0a1e; /* Dark navy */
+  --wtf-bg: #12122a; /* Card background */
+  --wtf-light: #e5e7eb; /* Light text */
+  --wtf-success: #06d6a0; /* Success green */
+  --wtf-danger: #ef476f; /* Error red */
+  --wtf-warning: #f78c6b; /* Warning orange */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--wtf-dark);
+  min-height: 100vh;
+  color: var(--wtf-light);
+  line-height: 1.6;
+}
+
+code {
+  font-family: 'Fira Code', monospace;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--wtf-accent);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--wtf-dark);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wtf-primary);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wtf-secondary);
+}
+
+/* Animations */
+@layer utilities {
+  .animate-glow {
+    animation: glow 1.5s ease-in-out infinite alternate;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  .btn-primary {
+    @apply bg-wtf-primary text-white font-semibold py-3 px-6 rounded-lg flex items-center space-x-2 transition-all duration-300 hover:bg-wtf-secondary hover:shadow-neon focus:ring-2 focus:ring-wtf-primary focus:ring-offset-2 focus:ring-offset-wtf-dark disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-wtf-bg text-wtf-light font-medium py-2 px-4 rounded-lg flex items-center space-x-2 transition-all duration-300 hover:bg-wtf-secondary hover:text-white hover:shadow-neon-secondary focus:ring-2 focus:ring-wtf-secondary focus:ring-offset-2 focus:ring-offset-wtf-dark;
+  }
+
+  .btn-icon {
+    @apply p-2.5 rounded-lg bg-wtf-bg text-wtf-light hover:bg-wtf-secondary hover:text-white transition-all duration-300 hover:shadow-neon-secondary;
+  }
+
+  .badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold bg-wtf-primary text-white;
+  }
+
+  .tag {
+    @apply px-4 py-2 rounded-full text-sm font-medium bg-wtf-bg text-wtf-light hover:bg-wtf-secondary hover:text-white transition-all duration-300;
+  }
+
+  .tag-active {
+    @apply bg-wtf-primary text-white font-semibold hover:bg-wtf-primary;
+  }
+
+  .card {
+    @apply bg-wtf-bg border border-wtf-dark rounded-lg p-6 transition-all duration-300 hover:shadow-neon;
+  }
+}
+
+/* Input Styles */
+input, textarea, select {
+  @apply bg-wtf-bg border border-wtf-dark text-wtf-light placeholder-wtf-light/50 rounded-lg px-4 py-3 focus:ring-2 focus:ring-wtf-primary focus:border-transparent transition-all duration-300;
+}
+
+/* Focus and Accessibility */
+:focus-visible {
+  outline: 2px solid var(--wtf-primary);
+  outline-offset: 2px;
+}
+
+/* Text Selection */
+::selection {
+  background: var(--wtf-primary);
+  color: var(--wtf-dark);
+}
+
+
+/* Responsive Typography */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .card, .btn-primary, .btn-secondary, .badge, .tag {
+    background: none !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
